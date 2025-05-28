@@ -1,17 +1,16 @@
-import Item from "./Item";
+import React from 'react';
+import { useTasks } from './TasksContext';
+import Item from './Item';
 
-const List = ({ tasks, toggleTask, deleteTask }) => {
+const List = () => {
+   const { tasks } = useTasks();
+
    return (
-      <ul className="task-list">
-         {tasks.map((task) => (
-            <Item
-               key={task.id}
-               task={task}
-               toggleTask={toggleTask}
-               deleteTask={deleteTask}
-            />
+      <div>
+         {tasks.map(task => (
+            <Item key={task.id} task={task} />
          ))}
-      </ul>
+      </div>
    );
 };
 

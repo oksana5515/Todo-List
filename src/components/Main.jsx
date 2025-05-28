@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+/*import { useState, useEffect } from "react";
 import List from "./List";
-
+import { useTasks } from './TasksContext';
 const Main = () => {
    const [tasks, setTasks] = useState(() => {
       const saved = localStorage.getItem("tasks");
@@ -19,6 +19,7 @@ const Main = () => {
          id: Date.now(),
          text: input,
          done: false,
+         createdAt: new Date().toLocaleString(),
       };
       setTasks([newTask, ...tasks]);
       setInput("");
@@ -36,6 +37,7 @@ const Main = () => {
       setTasks(tasks.filter((task) => task.id !== id));
    };
 
+
    return (
       <main className="main">
          <h1>Note your tasks</h1>
@@ -49,6 +51,34 @@ const Main = () => {
          />
          <List tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask} />
       </main>
+   );
+};
+
+export default Main;*/
+import React from 'react';
+import { useTasks } from './TasksContext';
+import List from './List';
+import Counter from './Counter';
+
+const Main = () => {
+   const { addTask } = useTasks();
+
+   return (
+      <div>
+         <h1>Note your tasks</h1>
+         <input
+            type="text"
+            placeholder="New task"
+            onKeyDown={e => {
+               if (e.key === 'Enter' && e.target.value.trim()) {
+                  addTask(e.target.value.trim());
+                  e.target.value = '';
+               }
+            }}
+         />
+         <Counter />
+         <List />
+      </div>
    );
 };
 
