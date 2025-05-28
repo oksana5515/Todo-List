@@ -58,7 +58,7 @@ export default Main;*/
 import React from 'react';
 import { useTasks } from './TasksContext';
 import List from './List';
-import Counter from './Counter';
+{/*import Counter from './Counter';*/ }
 
 const Main = () => {
    const { addTask } = useTasks();
